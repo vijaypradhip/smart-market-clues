@@ -1,8 +1,22 @@
 import { cn } from '@/lib/cn'
-import { LayoutDashboard, TrendingUp, Brain, PieChart, ArrowLeftRight, FlaskConical, GitBranch, Database, Settings, Zap, ChevronLeft, ChevronRight } from 'lucide-react'
+import {
+  LayoutDashboard,
+  TrendingUp,
+  Brain,
+  PieChart,
+  ArrowLeftRight,
+  FlaskConical,
+  GitBranch,
+  Database,
+  Settings,
+  Zap,
+  ChevronLeft,
+  ChevronRight,
+  Crosshair,
+} from 'lucide-react'
 import { useState } from 'react'
 
-export type Panel = 'dashboard' | 'market' | 'agents' | 'portfolio' | 'trading' | 'quantlab' | 'workflows' | 'connectors' | 'settings'
+export type Panel = 'dashboard' | 'market' | 'agents' | 'portfolio' | 'trading' | 'smc' | 'quantlab' | 'workflows' | 'connectors' | 'settings'
 
 const NAV_ITEMS: { id: Panel; icon: typeof LayoutDashboard; label: string; hotkey?: string }[] = [
   { id: 'dashboard', icon: LayoutDashboard, label: 'Dashboard', hotkey: '⌘1' },
@@ -10,15 +24,20 @@ const NAV_ITEMS: { id: Panel; icon: typeof LayoutDashboard; label: string; hotke
   { id: 'agents', icon: Brain, label: 'AI Agents', hotkey: '⌘3' },
   { id: 'portfolio', icon: PieChart, label: 'Portfolio', hotkey: '⌘4' },
   { id: 'trading', icon: ArrowLeftRight, label: 'Trading', hotkey: '⌘5' },
-  { id: 'quantlab', icon: FlaskConical, label: 'Quant Lab', hotkey: '⌘6' },
-  { id: 'workflows', icon: GitBranch, label: 'Workflows', hotkey: '⌘7' },
-  { id: 'connectors', icon: Database, label: 'Connectors', hotkey: '⌘8' },
+  { id: 'smc', icon: Crosshair, label: 'SMC Strategy', hotkey: '⌘6' },
+  { id: 'quantlab', icon: FlaskConical, label: 'Quant Lab', hotkey: '⌘7' },
+  { id: 'workflows', icon: GitBranch, label: 'Workflows', hotkey: '⌘8' },
+  { id: 'connectors', icon: Database, label: 'Connectors', hotkey: '⌘9' },
 ]
 
-interface SidebarProps { activePanel: Panel; onPanelChange: (panel: Panel) => void }
+interface SidebarProps {
+  activePanel: Panel
+  onPanelChange: (panel: Panel) => void
+}
 
 export default function Sidebar({ activePanel, onPanelChange }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false)
+
   return (
     <aside className={cn('h-full flex flex-col border-r border-panel bg-panel-alt transition-all duration-300', collapsed ? 'w-16' : 'w-56')}>
       <div className="flex items-center gap-2 px-4 h-14 border-b border-panel shrink-0">
