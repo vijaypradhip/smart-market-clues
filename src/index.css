@@ -76,10 +76,14 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
+    outline-color: oklch(0.556 0 0 / 50%);
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
   }
 }
@@ -94,6 +98,15 @@
   .bg-panel-alt { background-color: oklch(0.1 0 0); }
   .border-panel { border-color: oklch(0.22 0 0); }
   .glow-green { box-shadow: 0 0 20px oklch(0.65 0.15 165 / 15%); }
+  .scanline {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      oklch(0 0 0 / 3%) 2px,
+      oklch(0 0 0 / 3%) 4px
+    );
+  }
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
